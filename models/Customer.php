@@ -36,7 +36,7 @@ class Customer extends \yii\db\ActiveRecord
         return [
             [['customer_id', 'year', 'phone'], 'integer'],
             [['firstname', 'lastname'], 'required'],
-            [['firstname', 'lastname', 'address'], 'string', 'max' => 191],
+            [['firstname', 'lastname', 'address','fullName'], 'string', 'max' => 191],
             [['course'], 'string', 'max' => 100],
         ];
     }
@@ -53,6 +53,7 @@ class Customer extends \yii\db\ActiveRecord
             'lastname' => 'Lastname',
             'course' => 'Course',
             'year' => 'Year',
+            'fullName' => 'Full Name',
             'phone' => 'Phone',
             'address' => 'Address',
         ];

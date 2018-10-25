@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use app\models\User;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CustomerSearch */
@@ -14,10 +15,10 @@ $this->title = 'Customers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="customer-index">
-
+<?php if(Yii::$app->user->identity->role==User::ROLE_ADMIN) {?>
     <p>
         <?= Html::button('Add Customer', ['value'=>Url::to('/index.php/customer/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
-        
+<?php }?>
         
 
     </p>

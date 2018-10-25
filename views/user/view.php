@@ -4,15 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Item */
+/* @var $model app\models\User */
 
-    // $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Items', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = $model->username;
+$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="item-view">
+<div class="user-view">
 
-  
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -29,16 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'barcode_number',
-            'title',
-            'acc_no',
-            'call_no',
-            'author',
-            'publisher',
-            'c_year',
-            'type',
-            // 'no_of_copies',
-            // 'status',
+            'first_name',
+            'last_name',
+            'username',
+            'email',
+            'password',
+            'status',
+            'role',
+            // 'authkey',
         ],
     ]) ?>
 

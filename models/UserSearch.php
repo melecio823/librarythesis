@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Item;
+use app\models\User;
 
 /**
- * ItemSearch represents the model behind the search form of `app\models\Item`.
+ * UserSearch represents the model behind the search form of `app\models\User`.
  */
-class ItemSearch extends Item
+class UserSearch extends User
 {
     /**
      * {@inheritdoc}
@@ -19,8 +19,8 @@ class ItemSearch extends Item
     public function rules()
     {
         return [
-            [['id', 'barcode_number', 'acc_no',  'c_year', 'no_of_copies'], 'integer'],
-            [['title', 'globalSearch','author', 'call_no', 'publisher', 'type', 'status'], 'safe'],
+            [['id', 'status', 'role'], 'integer'],
+            [['first_name','globalSearch', 'last_name', 'username', 'email', 'password', 'authkey'], 'safe'],
         ];
     }
 
@@ -42,7 +42,7 @@ class ItemSearch extends Item
      */
     public function search($params)
     {
-        $query = Item::find();
+        $query = User::find();
 
         // add conditions that should always apply here
 
@@ -61,23 +61,19 @@ class ItemSearch extends Item
         // grid filtering conditions
         // $query->orFilterWhere([
         //     'id' => $this->id,
-        //     'barcode_number' => $this->barcode_number,
-        //     'acc_no' => $this->acc_no,
-        //     'call_no' => $this->call_no,
-        //     'c_year' => $this->c_year,
-        //     'no_of_copies' => $this->no_of_copies,
+        //     'status' => $this->status,
+        //     'role' => $this->role,
         // ]);
 
-        $query->orFilterWhere(['like', 'title', $this->globalSearch])
-            ->orFilterWhere(['like', 'author', $this->globalSearch])
-            ->orFilterWhere(['like', 'publisher', $this->globalSearch])
-            ->orFilterWhere(['like', 'type', $this->globalSearch])
-            ->orFilterWhere(['like', 'status', $this->globalSearch])
+        $query->orFilterWhere(['like', 'first_name', $this->globalSearch])
+            ->orFilterWhere(['like', 'last_name', $this->globalSearch])
+            ->orFilterWhere(['like', 'username', $this->globalSearch])
+            ->orFilterWhere(['like', 'email', $this->globalSearch])
+            ->orFilterWhere(['like', 'password', $this->globalSearch])
+            ->orFilterWhere(['like', 'authkey', $this->globalSearch])
             ->orFilterWhere(['like', 'id', $this->globalSearch])
-            ->orFilterWhere(['like', 'barcode_number', $this->globalSearch])
-            ->orFilterWhere(['like', 'acc_no', $this->globalSearch])
-            ->orFilterWhere(['like', 'c_year', $this->globalSearch])
-            ->orFilterWhere(['like', 'no_of_copies', $this->globalSearch]);
+            ->orFilterWhere(['like', 'status', $this->globalSearch])
+            ->orFilterWhere(['like', 'role', $this->globalSearch]);
 
         return $dataProvider;
     }

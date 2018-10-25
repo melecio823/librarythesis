@@ -15,12 +15,17 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'globalSearch') ?>
+    <?= $form->field($model, 'id') ?>
+    <?php  echo $form->field($model, 'date_borrow') ?>
+
+   <?php  echo $form->field($model, 'date_borrow') ?>
+   
+   <?php  echo $form->field($model, 'date_returned') ?>
 
    
-    <?php // echo $form->field($model, 'fines') ?>
+    <?php  echo $form->field($model, 'fines') ?>
 
-    <?php // echo $form->field($model, 'fines_status') ?>
+    <?php echo $form->field($model, 'fines_status') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

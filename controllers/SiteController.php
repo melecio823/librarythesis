@@ -35,6 +35,11 @@ class SiteController extends Controller
                     [
                         'actions' => ['index','about'],
                         'allow' => true,
+                        'roles' => [User::ROLE_STUDENT]
+                    ],
+                    [
+                        'actions' => ['index','about'],
+                        'allow' => true,
                         'roles' => [User::ROLE_ADMIN]
                     ]
                 ],
@@ -73,7 +78,7 @@ class SiteController extends Controller
     {
         // $user = new User;
         // $user->username = 'memid';
-        // $user->email = 'admin@admin.com';
+        // $user->email = 'admin@admin.com';    
         // $user->setPassword('admin');
         // $user->status = 10;
         // $user->role = 100;

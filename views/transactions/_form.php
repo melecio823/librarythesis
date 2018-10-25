@@ -64,9 +64,16 @@ use kartik\select2\Select2;
                     'format' => 'yyyy-mm-dd'
                 ]
         ]);?>
-<?= $form->field($model, 'fines')->textInput(['maxlength' => true]) ?>
-
-<?= $form->field($model, 'fines_status')->dropdownList([' Paid' =>' Paid', 'Unpaid' =>' Unpaid',], ['prompt' => '']) ?>
+ <?= $form->field($model, 'fines')->textInput(['maxlength' => true]) ?>
+ 
+ <?= $form->field($model ,'status')->dropDownList(
+                    ['Available' =>'Available', 'Borrowed' =>'Borrowed','Lost'=>'Lost','Damaged'=>'Damaged'],
+                        [
+                            'class' => 'form-control', 
+                            'prompt'=>'Status'
+                        ])?>
+<br>
+<?= $form->field($model, 'fines_status')->dropdownList([' Paid' =>' Paid', 'Unpaid' =>' Unpaid',], ['prompt' => '']) ?> 
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -15,9 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="item-index">
 
- <h1><?= Html::encode($this->title) ?></h1>
+ <!-- <h1><?= Html::encode($this->title) ?></h1> -->
     <p>
-        <?= Html::button('Add', ['value'=>Url::to('/item/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
+        <?= Html::button('Add', ['value'=>Url::to('item/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
     <?php
         Modal::begin([
@@ -71,8 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'publisher',
             'c_year',
             'type',
-            'no_of_copies',
-            // 'status',
+            // 'no_of_copies',
+            'status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

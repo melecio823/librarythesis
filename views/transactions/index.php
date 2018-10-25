@@ -1,16 +1,13 @@
 <?php
-
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Item;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TransactionsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Transactions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -18,9 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
   
   <p>
-        <?= Html::button('Create Transaction', ['value'=>Url::to('/transactions/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
+        <?= Html::button('Create Transaction', ['value'=>Url::to('/index.php/transactions/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
-    <?php
+     <?php
         Modal::begin([
             'header'=> '<h4>Transaction</h4>',
             'id'=> 'modal',
@@ -30,14 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]);
         echo "<div id='modalContent'> </div>";
-
         Modal::end();
         ?>
      <?php Pjax::begin(); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        // 'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [ 'attribute' => 
@@ -52,19 +48,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 );
             },
         ],
+
+        // 'item.barcode_number',
+
+
+        [ 'attribute' => 
+        'customer_id', 
+        'label' => 'Fullname',
+        'format' => 'raw', 
+        'value' => 
+        function ($model) {
+        return Html::a($model->customer->fullName, 
+        [ 'customer/view', 'id' => $model->customer->id ]
+            );
+        },
+    ],
             // [
             //     'attribute'=>'item_id',
             //     'value'=>'item.barcode_number',
             // ],
-            [
-                'attribute'=>'customer_id',
-                'value'=>'customer.fullName',
-            ],
+            // [
+            //     'attribute'=>'customer_id',
+            //     'value'=>'customer.fullName',
+            // ],
             'date_borrow',
             'date_returned',
             'fines',
             'fines_status',
-
+            'status',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -66,7 +66,14 @@ class TransactionsController extends Controller
     {
         $model = new Transactions();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+            $jeje = Yii::$app->request->post('Transactions');
+            // print_r( $jeje);
+            // die();
+            $modelItem = \app\models\Item::find()->where(['id' => $jeje['item_id']])->one();
+            $modelItem->status = $jeje['status'];
+            $modelItem->update();
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

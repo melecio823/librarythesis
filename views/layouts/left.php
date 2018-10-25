@@ -5,10 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/edna.jpg" class="img-circle" alt="User Image"/>
+                <img src="<?= $directoryAsset ?>/img/mdc.png" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Admin</p>
+                <p><?= Yii::$app->user->identity->Name?></p>
 
             </div>
         </div>
@@ -31,9 +31,11 @@
                 'items' => [
                     ['label' => 'Dashboard', 'icon' => 'bookmark', 'url' => ['/']],
                     ['label' => 'Books', 'icon' => 'book', 'url' => ['/item']],
-                    ['label' => 'Transaction', 'icon' => 'book', 'url' => ['/transactions']],
-                    ['label' => 'Customer', 'icon' => 'user', 'url' => ['/customer']],
-                    // ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Transactions', 'icon' => 'book', 'url' => ['/transactions']],
+                    ['label' => 'Customers', 'icon' => 'user', 'url' => ['/customer']],
+                    ['label' => 'Users', 'icon' => 'user', 'url' => ['/user']],
+                    // ['label' => 'Users', 'icon' => 'user', 'url' => ['/user']],
+                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                 ],
             ]
         ) ?>

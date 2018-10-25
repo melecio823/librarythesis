@@ -28,9 +28,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'type')->dropdownList(['Reference Book' =>'Reference Book', 'Reserve Book' =>'Reserve Book','Fiction' =>'Fiction'], ['prompt' => '--Select Type--']) ?>
 
-    <?= $form->field($model, 'no_of_copies')->textInput() ?>
+    <!-- <?= $form->field($model, 'no_of_copies')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?> 
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

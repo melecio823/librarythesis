@@ -11,7 +11,7 @@ use Yii;
  * @property string $barcode_number
  * @property string $title
  * @property int $acc_no
- * @property int $call_no
+ * @property string $call_no
  * @property string $author
  * @property string $publisher
  * @property int $c_year
@@ -37,9 +37,9 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['barcode_number', 'title', 'acc_no', 'call_no', 'author', 'publisher', 'c_year', 'type', 'no_of_copies', 'status'], 'required'],
-            [['acc_no', 'call_no', 'c_year', 'no_of_copies'], 'integer'],
-            [['barcode_number', 'title', 'author', 'publisher', 'type', 'status'], 'string', 'max' => 100],
+            [['barcode_number', 'title', 'acc_no', 'call_no', 'author', 'publisher', 'c_year', 'type'], 'required'],
+            [['acc_no', 'c_year', 'no_of_copies'], 'integer'],
+            [['barcode_number', 'title', 'call_no', 'author', 'publisher', 'type', 'status'], 'string', 'max' => 100],
         ];
     }
 

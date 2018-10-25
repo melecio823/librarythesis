@@ -3,11 +3,14 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\User;
 use app\models\Customer;
 use app\models\CustomerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\components\AccessRule;
 
 /**
  * CustomerController implements the CRUD actions for Customer model.
@@ -20,6 +23,30 @@ class CustomerController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+            'class' => AccessControl::className(),
+            'ruleConfig' => [
+                'class' => AccessRule::className(),
+            ],
+            'only' => ['index','create','view','update'],
+            'rules'=>[
+                [
+                    'actions'=>['login'],
+                    'allow' => true,
+                    'roles' => ['@']
+                ],[
+                    'actions' => ['index','view'],
+                    'allow' => true,
+                    'roles' => [User::ROLE_STUDENT]
+                ],
+                [
+                    'actions' => ['index','create','view','update'],
+                    'allow' => true,
+                    'roles' => [User::ROLE_ADMIN]
+                ]
+            ],
+        ],
+
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

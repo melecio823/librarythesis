@@ -4,7 +4,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'Dashboard',
+    'id' => 'Mater Dei College Tubigon Bohol',
     'name' => 'Library Circulation System',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],

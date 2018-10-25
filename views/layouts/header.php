@@ -26,13 +26,13 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/edna.jpg" class="user-image" alt="User Image"/>
+                        <img src="<?= $directoryAsset ?>/img/mdc.png" class="user-image" alt="User Image"/>
                         <span class="hidden-xs"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/edna.jpg" class="img-circle"
+                            <img src="<?= $directoryAsset ?>/img/mdc.png" class="img-circle"
                                  alt="User Image"/>
 
                             <p>

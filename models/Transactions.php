@@ -14,6 +14,7 @@ use Yii;
  * @property string $date_returned
  * @property string $fines
  * @property string $fines_status
+ * @property string $status
  *
  * @property Customer $customer
  * @property Item $item
@@ -34,11 +35,12 @@ class Transactions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item_id', 'customer_id',], 'required'],
+            [['item_id', 'customer_id'], 'required'],
             [['item_id', 'customer_id'], 'integer'],
             [['date_borrow', 'date_returned'], 'safe'],
             [['fines'], 'number'],
             [['fines_status'], 'string', 'max' => 10],
+            [['status'], 'string', 'max' => 50],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'id']],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => Item::className(), 'targetAttribute' => ['item_id' => 'id']],
         ];
@@ -51,12 +53,13 @@ class Transactions extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'item_id' => 'Barcode Number',
-            'customer_id' => 'Fullname',
+            'item_id' => 'Item ID',
+            'customer_id' => 'Customer ID',
             'date_borrow' => 'Date Borrow',
             'date_returned' => 'Date Returned',
             'fines' => 'Fines',
             'fines_status' => 'Fines Status',
+            'status' => 'Status',
         ];
     }
 
@@ -75,5 +78,4 @@ class Transactions extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Item::className(), ['id' => 'item_id']);
     }
-
 }

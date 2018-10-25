@@ -3,16 +3,18 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Item;
-use app\models\ItemSearch;
+use app\models\User;
+use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\components\AccessRule;
 
 /**
- * ItemController implements the CRUD actions for Item model.
+ * UserController implements the CRUD actions for User model.
  */
-class ItemController extends Controller
+class UserController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -20,6 +22,29 @@ class ItemController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+            'class' => AccessControl::className(),
+            'ruleConfig' => [
+                'class' => AccessRule::className(),
+            ],
+            'only' => ['index','create','view','update'],
+            'rules'=>[
+                [
+                    'actions'=>['login'],
+                    'allow' => true,
+                    'roles' => ['@']
+                ],[
+                    'actions' => ['index','view'],
+                    'allow' => true,
+                    'roles' => [User::ROLE_STUDENT]
+                ],
+                [
+                    'actions' => ['index','create','view','update'],
+                    'allow' => true,
+                    'roles' => [User::ROLE_ADMIN]
+                ]
+            ],
+        ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -30,12 +55,12 @@ class ItemController extends Controller
     }
 
     /**
-     * Lists all Item models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ItemSearch();
+        $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +70,7 @@ class ItemController extends Controller
     }
 
     /**
-     * Displays a single Item model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +83,21 @@ class ItemController extends Controller
     }
 
     /**
-     * Creates a new Item model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Item();
-
+        $model = new User();
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if(isset($_POST['User']))
+            {
+                $model->setPassword($_POST['User']['password']);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->renderAjax('create', [
@@ -76,7 +106,7 @@ class ItemController extends Controller
     }
 
     /**
-     * Updates an existing Item model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -86,17 +116,23 @@ class ItemController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if(isset($_POST['User']))
+            {
+                $model->setPassword($_POST['User']['password']);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
+            }
+            
         }
 
-        return $this->renderAjax('update', [
+        return $this->render('update', [
             'model' => $model,
         ]);
     }
 
     /**
-     * Deletes an existing Item model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,18 +146,19 @@ class ItemController extends Controller
     }
 
     /**
-     * Finds the Item model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Item the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Item::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    
 }

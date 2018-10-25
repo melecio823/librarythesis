@@ -1,68 +1,63 @@
 
 <div class="row">
-<div class="col-lg-4 col-lg-6">
-        <!-- small box -->
-        <div class="small-box bg-blue">
+    <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-orange">
             <div class="inner">
-                <h3>
-                    1
-                </h3>
+              <h3><?= app\models\Item::find()->count()?></h3>
 
-                <p>
-                    Books
-                </p>
+              <p><marquee>Books</marquee></p>
             </div>
             <div class="icon">
-                <i class="ion ion-item"></i>
+              <i style ="font-size:75px" class="glyphicon glyphicon-book"></i>
             </div>
-            <a href="<?= \yii\helpers\Url::to(['/item']) ?>" class="small-box-footer">
-                Lists <i class="fa fa-arrow-circle-right"></i>
-            </a>
+            <a href="<?= \yii\helpers\Url::to(['/item']) ?>" class="small-box-footer">List of Books <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
         </div>
-    </div>
-    <!-- ./col -->
-
-
-    <div class="col-lg-4 col-lg-6">
-        <!-- small box -->
-        <div class="small-box bg-yellow">
+        <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>
-                    2
-                </h3>
+              <h3><?= app\models\Transactions::find()->count()?></h3>
 
-                <p>
-                   Transactions
-                </p>
+              <p><marquee>Transactions</marquee></p>
             </div>
             <div class="icon">
-                <i class="ion ion-item"></i>
+              <i style ="font-size:75px" class="glyphicon glyphicon-tasks"></i>
             </div>
-            <a href="<?= \yii\helpers\Url::to(['/transactions']) ?>" class="small-box-footer">
-                Lists <i class="fa fa-arrow-circle-right"></i>
-            </a>
+            <a href="<?= \yii\helpers\Url::to(['/transactions']) ?>" class="small-box-footer">List of Transactions<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
         </div>
-    </div>
-    <!-- ./col -->
-
-    <div class="col-lg-4 col-lg-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
+        <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
             <div class="inner">
-                <h3>
-                    3
-                </h3>
-                <p>
-                    Customers
-                </p>
+              <h3><?= app\models\Customer::find()->count()?></h3>
+
+              <p><marquee>Customers</marquee></p>
             </div>
             <div class="icon">
-                <i class="ion ion-item"></i>
+              <i style ="font-size:75px" class="glyphicon glyphicon-user"></i>
             </div>
-            <a href="<?= \yii\helpers\Url::to(['/customer']) ?>" class="small-box-footer">
-                Lists <i class="fa fa-arrow-circle-right"></i>
-            </a>
+            <a href="<?= \yii\helpers\Url::to(['/customer']) ?>"class="small-box-footer">List of Customers <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
         </div>
+
+        <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><?= app\models\User::find()->count()?></h3>
+
+              <p><marquee>Users</marquee></p>
+            </div>
+            <div class="icon">
+              <i style ="font-size:75px" class="glyphicon glyphicon-user"></i>
+            </div>
+            <a href="<?= \yii\helpers\Url::to(['/user']) ?>"class="small-box-footer">List of Users <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
     </div>
 <?= $this->render('_expand-collapse') ?>
 

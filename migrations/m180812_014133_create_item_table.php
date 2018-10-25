@@ -23,7 +23,7 @@ class m180812_014133_create_item_table extends Migration
             'c_year' => $this->integer(100)->notNull(),
             'type' => $this->string(100)->notNull(),
             'no_of_copies' => $this->integer(100)->notNull(),
-            'status' => $this->string(100)->notNull()   
+            'status' => $this->string(100)  
         ]);
     }
 
